@@ -1,15 +1,11 @@
 # aluraTube
 
-# Página da Aula 1 feita em  conjunto com Mario Souto na imersão alura 💻🌐
+# Página feita em conjunto com Mario Souto na imersão alura 💻🌐
 <br>
 
-**Tasks deixadas pelo desenvolvedor:**
+Projeto em processo de desenvolvimento, com previsão para finalizar no dia 12/11 🚀🚀
 
-✅ Adicionar o banner na página
-
-✅ Adicionar uma nova seção de aluraTubes favoritos, mapeando os dados importados de um arquivo json
-
-![alura-tube-aula1](https://user-images.githubusercontent.com/104792685/200551021-0303e4da-8641-4281-b0fa-9e51d9a7588f.png)
+![image](https://user-images.githubusercontent.com/104792685/200682767-df822bb7-96f1-4be3-ac39-04932be17997.png)
 
 <br>
 
