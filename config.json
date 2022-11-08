@@ -130,14 +130,14 @@
       }
     ]
   },
-  "favoritos": [
+  "favorites": [
     {
-      "nome": "omariosouto",
-      "foto": "https://github.com/omariosouto.png"
+      "name": "omariosouto",
+      "picture": "https://github.com/omariosouto.png"
     },
     {
-      "nome": "peas",
-      "foto": "https://github.com/peas.png"
+      "name": "peas",
+      "picture": "https://github.com/peas.png"
     }
   ]
 }

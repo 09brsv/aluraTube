@@ -19,20 +19,32 @@ const StyledTimeline = styled.main`
     height: auto;
   }
   section {
-    width: 100%;
-    padding: 0;
+    
     overflow: hidden;
     padding: 16px;
     div {
-      
       width: calc(100vw - 16px * 4);
       display: grid;
       grid-gap: 16px;
-      grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       grid-auto-flow: column;
-      grid-auto-columns: minmax(200px,1fr);
-      overflow-x: scroll;
+      grid-auto-columns: minmax(200px, 1fr);
+      overflow-x: auto;
       scroll-snap-type: x mandatory;
+      ::-webkit-scrollbar {
+        width: 7px;
+      }
+
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 7px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        height: 2px;
+        border-radius: 7px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      }
       a {
         scroll-snap-align: start;
         span {
@@ -46,34 +58,37 @@ const StyledTimeline = styled.main`
   }
 `;
 
-export function Timeline(props) {
+export function Timeline({ searchValue, ...props }) {
+  const playlistNames = Object.keys(props.playlists);
+  // Statement
+  // Retorno por expressão
+  return (
+    <StyledTimeline>
+      {playlistNames.map((playlistName) => {
+        const videos = props.playlists[playlistName];
 
-    const playlistNames = Object.keys(props.playlists);
-    // Statement
-    // Retorno por expressão
-    return (
-        <StyledTimeline>
-            {playlistNames.map((playlistName) => {
-                const videos = props.playlists[playlistName];
-
-                return (
-                    <section>
-                        <h2>{playlistName}</h2>
-                        <div>
-                            {videos.map((video) => {
-                                return (
-                                    <a href={video.url}>
-                                        <img src={video.thumb} />
-                                        <span>
-                                            {video.title}
-                                        </span>
-                                    </a>
-                                )
-                            })}
-                        </div>
-                    </section>
-                )
-            })}
-        </StyledTimeline>
-    )
+        return (
+          <section key={playlistName}>
+            <h2>{playlistName}</h2>
+            <div>
+              {videos
+                .filter((video) => {
+                  return video.title
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase());
+                })
+                .map((video) => {
+                  return (
+                    <a key={video.url} href={video.url}>
+                      <img src={video.thumb} />
+                      <span>{video.title}</span>
+                    </a>
+                  );
+                })}
+            </div>
+          </section>
+        );
+      })}
+    </StyledTimeline>
+  );
 }

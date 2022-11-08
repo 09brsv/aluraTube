@@ -1,8 +1,4 @@
-import config from "../../config.json";
-
 import styled from "styled-components";
-
-const Favoritos = (props) => {
 
   const FavTubes = styled.section`
     display: flex;
@@ -27,19 +23,22 @@ const Favoritos = (props) => {
       }
     }
   `;
+  
+export const Favoritos = (props) => {
 
-  const favoritos = props.favoritos;
+
+  const favorites = props.favoritos;
 
   return (
     <FavTubes>
         
       <h2>Aluratubes Favoritos</h2>
       
-      {favoritos.map((item) => {
+      {favorites.map((item) => {
         return( 
-        <div>
-          <img src={item.foto} />
-          <span>{`@${item.nome}`}</span>
+        <div key={item.name}>
+          <img src={item.picture} />
+          <span>{`@${item.name}`}</span>
         </div>
         )
       })}
@@ -47,4 +46,3 @@ const Favoritos = (props) => {
   );
 };
 
-export default Favoritos;
