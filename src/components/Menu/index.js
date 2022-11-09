@@ -1,8 +1,9 @@
-import { useEffect } from "react";
 import styled from "styled-components";
+
+import DarkModeSwitch from "./components/DarkModeSwitch";
 import { Search } from "./components/Search";
 
-const StyledMenu = styled.header`
+const StyledNav = styled.nav`
   display: flex;
   flex-direction: row;
   height: 56px;
@@ -25,41 +26,22 @@ const StyledMenu = styled.header`
     }
   }
 `;
-const teste = {
-  backgroundLevel1: 'gray'
-}
 
-const ButtonColorTheme = styled.button`
-  width: 75px;
-  height: 30px;
-  border-radius: 17px;
-  cursor: pointer;
-`;
-
-export function Menu({ valorDoFiltro, setFiltro, currenceTheme, setTheme }) {
-  const handleClick = () => {
-    setTheme((dark) => {
-      return !dark
-    });
-  };
-  useEffect(() => {
-    console.log(currenceTheme);
-  }, [currenceTheme]);
-
+export function Nav({ valorDoFiltro, setFiltro }) {
   return (
-    <StyledMenu theme={teste}>
-      <div>
+    <StyledNav>
+
         <Logo />
-        
-      </div>
+
       <Search valorDoFiltro={valorDoFiltro} setFiltro={setFiltro} />
-      <ButtonColorTheme onClick={handleClick} />
-    </StyledMenu>
+      <DarkModeSwitch />
+    </StyledNav>
   );
 }
 
 function Logo() {
   return (
+    <div>
     <svg
       className="logo"
       viewBox="0 0 454 87"
@@ -102,5 +84,6 @@ function Logo() {
         fill="#282828"
       />
     </svg>
+    </div>
   );
 }

@@ -5,23 +5,16 @@ const StyledTimeline = styled.main`
   width: 100%;
   padding: 16px;
   overflow: hidden;
-  h2 {
-    font-size: 16px;
-    margin-bottom: 16px;
-    text-transform: capitalize;
-  }
-  img {
-    aspect-ratio: 16/9;
-    font-weight: 500;
-    object-fit: cover;
-    width: 100%;
-    max-width: 210px;
-    height: auto;
-  }
+
   section {
-    
     overflow: hidden;
     padding: 16px;
+    h2 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      text-transform: capitalize;
+    }
+
     div {
       width: calc(100vw - 16px * 4);
       display: grid;
@@ -36,14 +29,14 @@ const StyledTimeline = styled.main`
       }
 
       ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 7px;
       }
 
       ::-webkit-scrollbar-thumb {
-        height: 2px;
         border-radius: 7px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        background-color: ${({ theme }) => theme.backgroundSwitch};
       }
       a {
         scroll-snap-align: start;
@@ -53,6 +46,14 @@ const StyledTimeline = styled.main`
           padding-right: 24px;
           color: ${({ theme }) => theme.textColorBase || "#222222"};
         }
+        img {
+          aspect-ratio: 16/9;
+          font-weight: 500;
+          object-fit: cover;
+          width: 100%;
+          max-width: 210px;
+          height: auto;
+        }
       }
     }
   }
@@ -60,8 +61,7 @@ const StyledTimeline = styled.main`
 
 export function Timeline({ searchValue, ...props }) {
   const playlistNames = Object.keys(props.playlists);
-  // Statement
-  // Retorno por expressão
+
   return (
     <StyledTimeline>
       {playlistNames.map((playlistName) => {

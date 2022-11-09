@@ -15,10 +15,13 @@ export const CSSReset = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    overflow-x: hidden;
   }
   body {
     display: flex;
     flex: 1;
+    background-color: ${({theme})=> theme.backgroundBase};
+    color: ${({theme})=> theme.textColorBase}
   }
   #__next {
     display: flex;
