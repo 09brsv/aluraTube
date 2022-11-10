@@ -1,10 +1,11 @@
 import React from "react";
 import config from "../config.json";
 
-import { Nav } from "../src/components/Menu";
+import { Nav } from "../src/components/Nav";
 import { Timeline } from "../src/components/Timeline";
 import { Header } from "../src/components/Header";
 import { Favoritos } from "../src/components/Favoritos";
+import RegisterVideo from "../src/components/RegisterVideo";
 
 export default function HomePage() {
   const [valorDoFiltro, setFiltro] = React.useState("");
@@ -14,8 +15,9 @@ export default function HomePage() {
       <Nav valorDoFiltro={valorDoFiltro} setFiltro={setFiltro} />
       <Header />
       <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
-        Conteúdo
+        
       </Timeline>
+      <RegisterVideo />
       <Favoritos favorites={config.favorites} />
     </div>
   );

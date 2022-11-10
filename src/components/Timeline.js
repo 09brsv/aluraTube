@@ -1,5 +1,8 @@
+import React from "react";
+import Link from "next/link";
 import styled from "styled-components";
 
+import { VideoContext } from "./Context/EmbedVideo";
 const StyledTimeline = styled.main`
   flex: 1;
   width: 100%;
@@ -60,6 +63,7 @@ const StyledTimeline = styled.main`
 `;
 
 export function Timeline({ searchValue, ...props }) {
+  const { setUrl, setTitle } = React.useContext(VideoContext);
   const playlistNames = Object.keys(props.playlists);
 
   return (
@@ -79,10 +83,17 @@ export function Timeline({ searchValue, ...props }) {
                 })
                 .map((video) => {
                   return (
-                    <a key={video.url} href={video.url}>
-                      <img src={video.thumb} />
-                      <span>{video.title}</span>
-                    </a>
+                    <Link key={video.url} href={"/video"} legacyBehavior>
+                      <a
+                        onClick={() => {
+                          setTitle(video.title);
+                          setUrl(video.thumb);
+                        }}
+                      >
+                        <img src={video.thumb} />
+                        <span>{video.title}</span>
+                      </a>
+                    </Link>
                   );
                 })}
             </div>

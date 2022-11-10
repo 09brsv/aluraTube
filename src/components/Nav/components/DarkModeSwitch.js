@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ColorModeContext } from "./ColorMode";
+import { ColorModeContext } from "../../Context/ColorMode";
 
 const StyledSwitch = styled.div`
   background-color: ${({ theme }) => theme.backgroundSwitch};
