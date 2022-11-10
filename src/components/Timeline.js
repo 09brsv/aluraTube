@@ -87,7 +87,7 @@ export function Timeline({ searchValue, ...props }) {
                       <a
                         onClick={() => {
                           setTitle(video.title);
-                          setUrl(video.thumb);
+                          setUrl(video.url);
                         }}
                       >
                         <img src={video.thumb} />
