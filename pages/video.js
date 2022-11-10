@@ -21,7 +21,7 @@ export const StyledVideoSection = styled.div`
   }
   a {
     text-decoration: underline;
-    color: ${({ theme }) => theme.textColorBase};
+    color: ${({ theme }) => theme.textColorBase}
   }
 `;
 
@@ -32,9 +32,9 @@ export default function Video() {
   return (
     <StyledVideoSection>
       <Link href={"/"} passHref legacyBehavior>
-        <a>Retorne a página anterior</a>
-      </Link>
-      {url &&
+          <a>Retorne a página anterior</a>
+        </Link>
+      {url && (
         ((<h1>{title}</h1>),
         (
           <iframe
@@ -44,7 +44,8 @@ export default function Video() {
             title="YouTube video player"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
-        ))}
+        ))
+      )}
     </StyledVideoSection>
   );
 }
