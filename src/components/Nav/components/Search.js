@@ -10,6 +10,6 @@ export const Search = ({ valorDoFiltro, setFiltro }) => {
         value={valorDoFiltro}
       />
       <button>🔎</button>
-    <div/>
+    </div>
   );
 };
