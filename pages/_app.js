@@ -1,11 +1,10 @@
 import React from "react";
-
 import { ThemeProvider } from "styled-components";
+
 import { CSSReset } from "../src/components/CSSReset";
 import ColorModeProvider, {
   ColorModeContext,
 } from "../src/components/Context/ColorMode";
-import RegisterVideo from "../src/components/RegisterVideo";
 import EmbedVideoProvider from "../src/components/Context/EmbedVideo";
 
 const theme = {

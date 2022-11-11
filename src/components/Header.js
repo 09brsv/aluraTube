@@ -1,7 +1,7 @@
+import ImgBanner from "../assets/img/banner.jpg";
 import config from "../../config.json";
 import styled from "styled-components";
 import Image from "next/image";
-import ImgBanner from "../assets/img/banner.jpg";
 
 const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.backgroundLevel1};

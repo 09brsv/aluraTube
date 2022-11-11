@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { VideoContext } from "./Context/EmbedVideo";
+
 const StyledTimeline = styled.main`
   flex: 1;
   width: 100%;
