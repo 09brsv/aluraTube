@@ -1,5 +1,5 @@
-import ImgBanner from "../assets/img/banner.jpg";
-import config from "../../config.json";
+import ImgBanner from "../../assets/img/banner.jpg";
+import config from "../../../config.json";
 import styled from "styled-components";
 import Image from "next/image";
 

@@ -1,9 +1,15 @@
 import React from "react";
+import VideoService from "../../services/VideoService";
 import { StyledRegisterVideo } from "./styles";
+
+
+const getThumbnail = (url) => {
+  return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`
+}
 
 // Custom Hook
 const useForm = () => {
-  const [value, setValue] = React.useState({ title: "", url: "" });
+  const [value, setValue] = React.useState({ title: "", playlist: "", url: "" });
 
   return {
     value,
@@ -11,15 +17,17 @@ const useForm = () => {
       const name = e.target.name;
       setValue({
         ...value,
-        [name]: e.target.value,
+        [name]: e.target.value.toLowerCase()
       });
     },
-    clearForm: () => setValue({title: "", url: ""}),
+    clearForm: () => setValue({ title: "", playlist: "", url: "" }),
   };
 };
 
 const RegisterVideo = () => {
-  const {value, handleChange, clearForm} = useForm();
+  const service = VideoService()
+  const { value, handleChange, clearForm } = useForm();
+  const { title, playlist, url } = value
   const [formVisible, setFormVisible] = React.useState(false);
 
   return (
@@ -28,14 +36,27 @@ const RegisterVideo = () => {
         +
       </button>
       {formVisible && (
-        <form onSubmit={(e) =>{
-             e.preventDefault()
-             clearForm();
-             setFormVisible(false)
-             }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            
+            // Contrato entre o front e o verso
+            service.getAllVideos() 
+            .insert({
+              title,
+              url,
+              thumb: getThumbnail(url),
+              playlist
+            })
+            .then()
+            
+            clearForm();
+            setFormVisible(false);
+          }}
+        >
           <div>
             <button
-            type="button"
+              type="button"
               className="close-modal"
               onClick={() => setFormVisible(false)}
             >
@@ -44,16 +65,22 @@ const RegisterVideo = () => {
             <input
               placeholder="Título do vídeo"
               name="title"
-              value={value.title}
+              value={title}
+              onChange={handleChange}
+            />
+            <input
+              placeholder="Playlist do vídeo"
+              name="playlist"
+              value={playlist}
               onChange={handleChange}
             />
             <input
               placeholder="URL"
               name="url"
-              value={value.url}
+              value={url}
               onChange={handleChange}
             />
-          
+
             <button type="submit">Cadastrar</button>
           </div>
         </form>

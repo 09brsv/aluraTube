@@ -15,6 +15,7 @@ const FavTubes = styled.section`
   div {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     align-items: center;
     img {
       width: 80px;
