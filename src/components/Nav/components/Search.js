@@ -36,21 +36,13 @@ const StyledSearch = styled.div`
 export const Search = ({ valorDoFiltro, setFiltro }) => {
 
   return (
-<<<<<<< HEAD
-    <div>
-=======
     <StyledSearch>
->>>>>>> 25105f5 (Add renderização por BD, e components separados em pastas)
       <input
         type="text"
         onChange={(e) => setFiltro(e.target.value)}
         value={valorDoFiltro}
       />
       <button>🔎</button>
-<<<<<<< HEAD
-    </div>
-=======
     </StyledSearch>
->>>>>>> 25105f5 (Add renderização por BD, e components separados em pastas)
   );
 };

@@ -16,10 +16,7 @@ export default function HomePage() {
     <div>
       <Nav valorDoFiltro={valorDoFiltro} setFiltro={setFiltro} />
       <Header />
-      <Timeline
-        searchValue={valorDoFiltro}
-        playlists={config.playlists}
-      ></Timeline>
+      <Timeline searchValue={valorDoFiltro} />
       <RegisterVideo />
       <Favoritos favorites={config.favorites} />
     </div>

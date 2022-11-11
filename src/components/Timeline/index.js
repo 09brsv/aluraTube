@@ -7,7 +7,7 @@ import VideoService from "../../services/VideoService";
 
 
 
-export function Timeline({ searchValue, ...props }) {
+export function Timeline({ searchValue }) {
   const service = VideoService()
   const { setUrl, setTitle } = useContext(VideoContext);
   const [playlists, setPlaylists] = useState({});
