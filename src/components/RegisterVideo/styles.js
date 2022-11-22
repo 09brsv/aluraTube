@@ -44,26 +44,29 @@ export const StyledRegisterVideo = styled.div`
     z-index: 100;
     display: flex;
     justify-content: center;
+    align-items: center;
     & > div {
       flex: 1;
       border-radius: 8px;
-      max-width: 320px;
+      max-width: 350px;
       background-color: ${({ theme }) => theme.backgroundLevel2};
       display: flex;
       flex-direction: column;
       position: relative;
-      padding: 16px;
+      padding: 36px 16px;
       padding-top: 40px;
+
+      iframe {
+        margin-top: 30px;
+      }
     }
   }
   input {
     border-radius: 2px;
     border: 1px solid ${({ theme }) => theme.borderBase};
-    padding: 8px 10px;
+    padding: 10px;
     margin-bottom: 10px;
     outline: none;
-    color: #222222;
-    background-color: #f9f9f9;
     color: ${({ theme }) => theme.textColorBase};
     background-color: ${({ theme }) => theme.backgroundBase};
   }

@@ -2,14 +2,17 @@ import React from "react";
 import VideoService from "../../services/VideoService";
 import { StyledRegisterVideo } from "./styles";
 
-
 const getThumbnail = (url) => {
-  return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`
-}
+  return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
+};
 
 // Custom Hook
 const useForm = () => {
-  const [value, setValue] = React.useState({ title: "", playlist: "", url: "" });
+  const [value, setValue] = React.useState({
+    title: "",
+    playlist: "",
+    url: "",
+  });
 
   return {
     value,
@@ -17,7 +20,7 @@ const useForm = () => {
       const name = e.target.name;
       setValue({
         ...value,
-        [name]: e.target.value.toLowerCase()
+        [name]: e.target.value,
       });
     },
     clearForm: () => setValue({ title: "", playlist: "", url: "" }),
@@ -25,9 +28,9 @@ const useForm = () => {
 };
 
 const RegisterVideo = () => {
-  const service = VideoService()
+  const service = VideoService();
   const { value, handleChange, clearForm } = useForm();
-  const { title, playlist, url } = value
+  const { title, playlist, url } = value;
   const [formVisible, setFormVisible] = React.useState(false);
 
   return (
@@ -39,17 +42,18 @@ const RegisterVideo = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            
+
             // Contrato entre o front e o verso
-            service.getAllVideos() 
-            .insert({
-              title,
-              url,
-              thumb: getThumbnail(url),
-              playlist
-            })
-            .then()
-            
+            service
+              .getAllVideos()
+              .insert({
+                title,
+                url,
+                thumb: getThumbnail(url),
+                playlist,
+              })
+              .then();
+
             clearForm();
             setFormVisible(false);
           }}
@@ -82,6 +86,20 @@ const RegisterVideo = () => {
             />
 
             <button type="submit">Cadastrar</button>
+            {url.includes('https://www.youtube.com/watch?v=') && (
+              <div>
+                
+                <iframe
+                  width="290"
+                  height="215"
+                  src={`https://www.youtube.com/embed/${url.slice(
+                    url.indexOf("=") + 1
+                  )}`}
+                  title="YouTube video player"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                ></iframe>
+              </div>
+            )}
           </div>
         </form>
       )}
