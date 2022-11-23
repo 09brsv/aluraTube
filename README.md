@@ -3,10 +3,13 @@
 # Página feita em conjunto com Mario Souto na imersão alura 💻🌐
 <br>
 
-Projeto em processo de desenvolvimento, com previsão para finalizar no dia 12/11 🚀🚀
+Projeto pronto para uso, mas com alguns detalhes a se fazer
 
-![image](https://user-images.githubusercontent.com/104792685/200682767-df822bb7-96f1-4be3-ac39-04932be17997.png)
+* Tema Dark
+<img src="https://user-images.githubusercontent.com/104792685/203449837-efbe663e-bc45-4970-b6ec-3978b02b6227.png" width="70%" alt="alura-tube-dark">
 
+* Tema Light
+<img src="https://user-images.githubusercontent.com/104792685/203449842-42f8d4b8-c430-4c54-a751-bc49d898efee.png" width="70%" alt="alura-tube-light">
 <br>
 
 ## Techs usadas <br>
@@ -15,6 +18,7 @@ Projeto em processo de desenvolvimento, com previsão para finalizar no dia 12/1
 * NextJs
 * Styled components
 * React
+* Supabase
 <br>
 
 ## Acesso ⬇⬇<br>
