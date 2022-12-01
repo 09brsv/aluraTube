@@ -2,6 +2,7 @@ import ImgBanner from "../../assets/img/banner.jpg";
 import config from "../../../config.json";
 import styled from "styled-components";
 import Image from "next/image";
+import Head from "next/head";
 
 const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.backgroundLevel1};
@@ -26,6 +27,15 @@ const StyledHeader = styled.header`
 
 export function Header() {
   return (
+    <>
+     <Head>
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="https://icons.iconarchive.com/icons/dakirby309/simply-styled/128/YouTube-icon.png"
+        />
+        <title>AluraTube</title>
+      </Head>
     <StyledHeader>
       <Image src={ImgBanner} alt="ok" quality={100} priority={true} />
       <section className="user-info">
@@ -39,5 +49,6 @@ export function Header() {
         </div>
       </section>
     </StyledHeader>
+    </>
   );
 }
