@@ -7,7 +7,7 @@ import VideoService from "../../services/VideoService";
 
 
 
-export function Timeline({ searchValue }) {
+export function Timeline({ searchValue, newVideo }) {
   const service = VideoService()
   const { setUrl, setTitle } = useContext(VideoContext);
   const [playlists, setPlaylists] = useState({});
@@ -18,18 +18,24 @@ export function Timeline({ searchValue }) {
     .getAllVideos()
     .select("*")
     .then((resp) => {
-        const newPlaylists = { ...playlists };
+      let newPlaylists = { ...playlists };
+      
+        if (newVideo) {
+          newPlaylists = {}
+        }
+
         resp.data.forEach((dataPlaylists) => {
-          
+
           if (!newPlaylists[dataPlaylists.playlist]) {
             newPlaylists[dataPlaylists.playlist] = [];
           }
           newPlaylists[dataPlaylists.playlist].push(dataPlaylists);
         });
+        
         setPlaylists(newPlaylists);
       })
     
-  }, []);
+  }, [newVideo]);
 
   return (
     <StyledTimeline>
@@ -48,7 +54,7 @@ export function Timeline({ searchValue }) {
                 })
                 .map((video) => {
                   return (
-                    <Link key={video.url} href={"/video"} legacyBehavior>
+                    <Link key={video.title} href={"/video"} legacyBehavior>
                       <a
                         onClick={() => {
                           setTitle(video.title);

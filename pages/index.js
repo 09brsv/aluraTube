@@ -10,14 +10,14 @@ import RegisterVideo from "../src/components/RegisterVideo";
 
 export default function HomePage() {
   const [valorDoFiltro, setFiltro] = useState("");
-
+  const [newVideo, setNewVideo] = useState("");
 
   return (
     <div>
       <Nav valorDoFiltro={valorDoFiltro} setFiltro={setFiltro} />
       <Header />
-      <Timeline searchValue={valorDoFiltro} />
-      <RegisterVideo />
+      <Timeline searchValue={valorDoFiltro} newVideo={newVideo} />
+      <RegisterVideo setNewVideo={setNewVideo}/>
       <Favoritos favorites={config.favorites} />
     </div>
   );
