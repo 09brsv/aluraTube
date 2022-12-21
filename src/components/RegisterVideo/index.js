@@ -2,8 +2,8 @@ import React from "react";
 import VideoService from "../../services/VideoService";
 import { StyledRegisterVideo } from "./styles";
 
-const getThumbnail = async (url) => {
-  return await `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
+const getThumbnail = (url) => {
+  return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
 };
 
 // Custom Hook
@@ -27,7 +27,7 @@ const useForm = () => {
   };
 };
 
-const RegisterVideo = async ({ setNewVideo }) => {
+const RegisterVideo = ({ setNewVideo }) => {
   const service = VideoService();
   const { value, handleChange, clearForm } = useForm();
   const { title, playlist, url } = value;
@@ -49,7 +49,7 @@ const RegisterVideo = async ({ setNewVideo }) => {
               .insert({
                 title,
                 url,
-                thumb: await getThumbnail(url),
+                thumb: getThumbnail(url),
                 playlist : playlist.toLowerCase().trim()
               })
               .then();
