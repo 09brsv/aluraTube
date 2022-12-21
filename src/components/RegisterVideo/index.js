@@ -27,7 +27,7 @@ const useForm = () => {
   };
 };
 
-const RegisterVideo = ({ setNewVideo }) => {
+const RegisterVideo = async ({ setNewVideo }) => {
   const service = VideoService();
   const { value, handleChange, clearForm } = useForm();
   const { title, playlist, url } = value;
@@ -49,7 +49,7 @@ const RegisterVideo = ({ setNewVideo }) => {
               .insert({
                 title,
                 url,
-                thumb: getThumbnail(url),
+                thumb: await getThumbnail(url),
                 playlist : playlist.toLowerCase().trim()
               })
               .then();
