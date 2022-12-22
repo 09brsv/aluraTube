@@ -56,8 +56,10 @@ export const StyledRegisterVideo = styled.div`
       padding: 36px 16px;
       padding-top: 40px;
 
-      iframe {
-        margin-top: 30px;
+      span {
+        color: red; 
+        text-align: center;
+        margin-bottom: 7px;
       }
     }
   }
