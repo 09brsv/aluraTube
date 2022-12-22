@@ -1,9 +1,12 @@
 import React from "react";
+
 import VideoService from "../../services/VideoService";
 import { StyledRegisterVideo } from "./styles";
 
-const getThumbnail = async (url) => {
-  return await `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
+const getThumbnail = (url) => {
+  const id = url.split("v=")[1];
+  if (!id) return;
+  return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 };
 
 // Custom Hook
@@ -32,6 +35,7 @@ const RegisterVideo = ({ setNewVideo }) => {
   const { value, handleChange, clearForm } = useForm();
   const { title, playlist, url } = value;
   const [formVisible, setFormVisible] = React.useState(false);
+const [invalidUrl, setInvalidUrl] = React.useState(false)
 
   return (
     <StyledRegisterVideo>
@@ -40,23 +44,31 @@ const RegisterVideo = ({ setNewVideo }) => {
       </button>
       {formVisible && (
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
+            try {
+              const data = await fetch(getThumbnail(url));
 
-            // Contrato entre o front e o verso
-            service
-              .getAllVideos()
-              .insert({
-                title,
-                url,
-                thumb: getThumbnail(url),
-                playlist : playlist.toLowerCase().trim()
-              })
-              .then();
+              if (data.status != "200") {
+                setInvalidUrl(true)
+                throw new Error("Url inválida");
+              } else {
+                // Contrato entre o front e o verso
+                await service.getAllVideos().insert({
+                  title,
+                  url,
+                  thumb: getThumbnail(url),
+                  playlist: playlist.toLowerCase().trim(),
+                });
 
-            clearForm();
-            setFormVisible(false);
-            setNewVideo(title);
+                clearForm();
+                setFormVisible(false);
+                setInvalidUrl(false);
+                setNewVideo(title);
+              }
+            } catch (error) {
+              console.log(error, "Não deu certo");
+            }
           }}
         >
           <div>
@@ -72,35 +84,27 @@ const RegisterVideo = ({ setNewVideo }) => {
               name="title"
               value={title}
               onChange={handleChange}
+              required
             />
             <input
               placeholder="Playlist do vídeo"
               name="playlist"
               value={playlist}
               onChange={handleChange}
+              required
             />
             <input
               placeholder="URL"
               name="url"
               value={url}
               onChange={handleChange}
+              required
             />
+            {invalidUrl && <span>URL INVÁLIDA</span>}
 
             <button type="submit">Cadastrar</button>
-            {url.includes('https://www.youtube.com/watch?v=') && (
-              <div>
-                
-                <iframe
-                  width="290"
-                  height="215"
-                  src={`https://www.youtube.com/embed/${url.slice(
-                    url.indexOf("=") + 1
-                  )}`}
-                  title="YouTube video player"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
-              </div>
-            )}
+
+            {url && <img src={getThumbnail(url)} />}
           </div>
         </form>
       )}
