@@ -19,7 +19,7 @@
 ## Funcionalidades 💡
 - Filtrar vídeo por palavra chave
 - Alternar entre tema claro e escuro
-- Adicionar vídeos através de links do youtube ( Precisa atualizar a página para ter acesso ao vídeo adicionado )
+- Adicionar vídeos através de links do youtube
 - Assistir vídeo escolhido através de um embed em uma página separada
 - Acesso a um preview da thumbnail do vídeo antes de adicionar
 
